@@ -1,0 +1,537 @@
+---
+title: "HCAMP Baseline Norms"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: spacelab
+    highlight: tango 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(here)
+library(janitor)
+library(rio)
+library(colorblindr)
+library(gghighlight)
+library(forcats)
+library(ggrepel)
+library(gt)
+library(knitr)
+library(kableExtra)
+library(reactable)
+library(plotly)
+library(glue)
+library(fs)
+library(rstatix)
+library(ggpubr)
+
+theme_set(theme_minimal(15) +
+            theme(legend.position = "bottom",
+                  panel.grid.major.x = element_line(color = "gray60"),
+                  panel.grid.minor.x = element_blank(),
+                  panel.grid.major.y = element_blank())
+          )
+
+
+files <- dir_ls(here::here("data"), glob = "*.csv")
+
+d <- map_df(files, read_csv, .id = "file",
+                 col_types = cols(.default = "c")) %>% 
+  modify(~parse_guess(.x)) %>% 
+  janitor::clean_names() %>% 
+  mutate(year = parse_number(file)) %>% 
+  mutate(year = as.factor(year))
+
+mean_2 <- function(x) {
+  z <- na.omit(x)
+  sum(z) / length(z)
+}
+
+str(d)
+d$user_symptom22delayed
+d$user_symptom11delayed
+
+impact2 <- d %>% 
+  mutate(user_gender = as.factor(user_gender),
+         user_age = as.factor(user_age),
+         user_handedness = as.factor(user_handedness),
+         user_height = as.factor(user_height),
+         user_weight = as.factor(user_weight),
+         user_country = as.factor(user_country),
+         user_first_language = as.factor(user_first_language),
+         user_second_language = as.factor(user_second_language),
+         user_education_level = as.factor(user_education_level),
+         user_special_ed1 = as.factor(user_special_ed1),
+         user_special_ed2 = as.factor(user_special_ed2),
+         user_special_ed3 = as.factor(user_special_ed3),
+         user_special_ed4 = as.factor(user_special_ed4),
+         user_special_ed5 = as.factor(user_special_ed5),
+         add_adhd = as.factor(add_adhd),
+         dyslexia = as.factor(dyslexia),
+         autism = as.factor(autism),
+         user_treatment_received1 = as.factor(user_treatment_received1),
+         user_treatment_received2 = as.factor(user_treatment_received2),
+         user_treatment_received3 = as.factor(user_treatment_received3),
+         user_treatment_received4 = as.factor(user_treatment_received4),
+         user_treatment_received5 = as.factor(user_treatment_received5),
+         user_treatment_received6 = as.factor(user_treatment_received6),
+         user_treatment_received7 = as.factor(user_treatment_received7),
+         user_current_sport = as.factor(user_current_sport),
+         user_primary_position = as.factor(user_primary_position),
+         user_level_of_participation = as.factor(user_level_of_participation),
+         user_years_playing = as.factor(user_years_playing),
+         user_number_of_concussions = as.factor(user_number_of_concussions),
+         user_concussion_type1 = as.factor(user_concussion_type1),
+         user_concussion_type2 = as.factor(user_concussion_type2),
+         user_concussion_type3 = as.factor(user_concussion_type3),
+         user_concussion_type4 = as.factor(user_concussion_type4),
+         user_total_games_missed = as.factor(user_total_games_missed),
+         user_concussion_history = as.factor(user_concussion_history),
+         user_last_concussion_date = as.factor(user_last_concussion_date),
+         test_type = as.factor(test_type),
+         test_date = as.factor(test_date),
+         exam_language = as.factor(exam_language),
+         test_version = as.factor(test_version),
+         word_memory_lp = as.factor(word_memory_lp),
+         word_memory_dm_correct = as.factor(word_memory_dm_correct),
+         word_memory_total_percent_correct = as.factor(word_memory_total_percent_correct),
+         design_memory_lp = as.factor(design_memory_lp),
+         design_memory_dm_correct = as.factor(design_memory_dm_correct),
+         design_memory_total_percent_correct = as.factor(design_memory_total_percent_correct),
+         x_oaverage_incorrect = as.factor(x_oaverage_incorrect),
+         three_letters_percentage_letters_correct = as.factor(three_letters_percentage_letters_correct),
+         user_symptom1delayed = as.factor(user_symptom1delayed))
+
+str(impact2)
+
+impact2$user_symptom1delayed
+
+
+impact3 <- impact2 %>% 
+  mutate(user_age = as.numeric(user_age),
+    user_height = as.numeric(user_height),
+         user_weight = as.numeric(user_weight),
+         user_education_level = as.numeric(user_education_level),
+         user_years_playing = as.numeric(user_years_playing),
+         user_number_of_concussions = as.numeric(user_number_of_concussions),
+         user_concussion_type1 = as.numeric(user_concussion_type1),
+         user_concussion_type2 = as.numeric(user_concussion_type2),
+         user_concussion_type3 = as.numeric(user_concussion_type3),
+         user_concussion_type4 = as.numeric(user_concussion_type4),
+         user_total_games_missed = as.numeric(user_total_games_missed),
+         word_memory_lp = as.numeric(word_memory_lp),
+         word_memory_dm_correct = as.numeric(word_memory_dm_correct),
+         word_memory_total_percent_correct = as.numeric(word_memory_total_percent_correct),
+         design_memory_lp = as.numeric(design_memory_lp),
+         design_memory_dm_correct = as.numeric(design_memory_dm_correct),
+         design_memory_total_percent_correct = as.numeric(design_memory_total_percent_correct),
+         x_oaverage_incorrect = as.numeric(x_oaverage_incorrect),
+         three_letters_percentage_letters_correct = as.numeric(three_letters_percentage_letters_correct),
+         user_symptom1delayed = as.numeric(user_symptom1delayed))
+
+str(impact3)
+
+mean_2(impact3$user_symptom1delayed)
+mean_2(impact3$user_symptom2delayed)
+
+impact <- impact3
+
+str(impact)
+
+norms <- impact %>% 
+  select(passport_id, 
+         year,
+         test_type,
+         user_age, 
+         user_gender,
+         user_current_sport,
+         user_memory_composite_score_verbal,
+         user_memory_composite_score_visual,
+         user_visual_motor_composite_score,
+         user_impulse_control_composite_score,
+         user_reaction_time_composite_score) %>% 
+  rename(age = user_age,
+         gender = user_gender,
+         sport = user_current_sport,
+         verbal_memory = user_memory_composite_score_verbal,
+         visual_memory = user_memory_composite_score_visual,
+         visual_motor = user_visual_motor_composite_score,
+         impulse_control = user_impulse_control_composite_score,
+         reaction_time = user_reaction_time_composite_score)
+
+norms <- norms %>% 
+  filter(test_type == "Baseline")
+
+norms <- norms %>% 
+  na.omit()
+
+norms_age_range <- norms %>% 
+  filter(age >= 12 & age <= 18)
+
+norms_age_range %>% 
+  count(age)
+
+norms %>% 
+  count(age)
+
+```
+
+# Test Background Information {.tabset .tabset-fade .tabset-pills}
+
+```{r, include=FALSE}
+total_all <- norms %>% 
+  summarize(length(passport_id))
+
+total_age_range <- norms_age_range %>% 
+  summarize(length(passport_id))
+
+total_sum <- data.frame("Level" = c("All Baseline Tests", "Baseline Tests Ages 12-18"), "Total" = c(83998, 79481))
+
+```
+
+## Total Tests
+
+```{r, include=TRUE}
+total_sum %>% 
+  reactable(columns = list(
+    Level = colDef(name = "Level"),
+    Total = colDef(name = "Total", 
+                   format = colFormat(separators = TRUE, suffix = " individuals"))),
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE)
+```
+
+## Age Distribution 
+
+```{r, include=FALSE}
+age_tbl <- norms_age_range %>% 
+  group_by(age) %>% 
+  summarize(total = n()) %>% 
+  na.omit() %>% 
+  reactable(
+    columns = list(
+      age = colDef(name = "Age"),
+      total = colDef(name = "Total",
+                     format = colFormat(separators = TRUE, suffix = " individuals"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE,
+    searchable = TRUE
+  )
+
+```
+
+```{r, include=TRUE}
+age_tbl
+```
+
+## Gender Distribution 
+```{r, include=FALSE}
+gender_tbl <- norms_age_range %>% 
+  group_by(gender, age) %>% 
+  summarize(total = n()) %>% 
+  na.omit() %>% 
+  reactable(
+    columns = list(
+      gender = colDef(name = "Gender"),
+      age = colDef(name = "Age"),
+      total = colDef(name = "Total",
+                     format = colFormat(separators = TRUE, suffix = " individuals"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE,
+    searchable = TRUE
+  )
+
+gender_tbl
+```
+
+```{r, include=TRUE}
+gender_tbl
+```
+
+## Sport Distribution 
+
+```{r, include=FALSE}
+norms_age_range %>% 
+  count(sport)
+
+sport_tbl <- norms_age_range %>% 
+  group_by(sport) %>% 
+  summarize(total = n()) %>% 
+  arrange(desc(total)) %>% 
+  na.omit() %>% 
+  reactable(
+    columns = list(
+      sport = colDef(name = "Sport"),
+      total = colDef(name = "Total",
+                     format = colFormat(separators = TRUE, suffix = " individuals"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE,
+    searchable = TRUE
+  )
+```
+
+```{r, include=TRUE}
+sport_tbl
+```
+
+
+```{r, include=FALSE}
+create_react <- function(df, var) {
+    df %>% 
+      summarize(Mean = mean({{var}}),
+                SD = sd({{var}}),
+                Min = min({{var}}),
+                Max = max({{var}}),
+                Total = length({{var}})) %>% 
+      mutate_if(is.numeric, round, 2) %>% 
+      reactable(columns = list(
+        Mean = colDef(format = colFormat(separators = TRUE)),
+        SD = colDef(format = colFormat(separators = TRUE)),
+        Min = colDef(format = colFormat(separators = TRUE)),
+        Max = colDef(format = colFormat(separators = TRUE)),
+        Total = colDef(format = colFormat(separators = TRUE, suffix = " individuals"))
+      ))
+}
+
+```
+
+# Distribution of Scores by Age (Ages 12-18) {.tabset .tabset-fade .tabset-pills}
+
+```{r, include=FALSE}
+age_12 <- norms_age_range %>% 
+  filter(age == 12)
+
+age_13 <- norms_age_range %>% 
+  filter(age == 13)
+
+age_14 <- norms_age_range %>% 
+  filter(age == 14)
+
+age_15 <- norms_age_range %>% 
+  filter(age == 15)
+
+age_16 <- norms_age_range %>% 
+  filter(age == 16)
+
+age_17_18 <- norms_age_range %>% 
+  filter(age == 17 | age == 18)
+
+```
+
+## Age 12 {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(age_12, verbal_memory)
+```
+
+### Visual Memory
+
+```{r, include=TRUE}
+create_react(age_12, visual_memory)
+```
+
+### Visual Motor
+
+```{r, include=TRUE}
+create_react(age_12, visual_motor)
+```
+
+### Impulse Control
+
+```{r, include=TRUE}
+create_react(age_12, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_12, reaction_time)
+```
+
+
+## Age 13 {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(age_13, verbal_memory)
+```
+
+### Visual Memory
+
+```{r, include=TRUE}
+create_react(age_13, visual_memory)
+```
+
+### Visual Motor
+
+```{r, include=TRUE}
+create_react(age_13, visual_motor)
+```
+
+### Impulse Control
+
+```{r, include=TRUE}
+create_react(age_13, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_13, reaction_time)
+```
+
+
+## Age 14 {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(age_14, verbal_memory)
+```
+
+### Visual Memory
+
+```{r, include=TRUE}
+create_react(age_14, visual_memory)
+```
+
+### Visual Motor
+
+```{r, include=TRUE}
+create_react(age_14, visual_motor)
+```
+
+### Impulse Control
+
+```{r, include=TRUE}
+create_react(age_14, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_14, reaction_time)
+```
+
+
+## Age 15 {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(age_15, verbal_memory)
+```
+
+### Visual Memory
+
+```{r, include=TRUE}
+create_react(age_15, visual_memory)
+```
+
+### Visual Motor
+
+```{r, include=TRUE}
+create_react(age_15, visual_motor)
+```
+
+### Impulse Control
+
+```{r, include=TRUE}
+create_react(age_15, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_15, reaction_time)
+```
+
+
+## Age 16 {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(age_16, verbal_memory)
+```
+
+### Visual Memory
+
+```{r, include=TRUE}
+create_react(age_16, visual_memory)
+```
+
+### Visual Motor
+
+```{r, include=TRUE}
+create_react(age_16, visual_motor)
+```
+
+### Impulse Control
+
+```{r, include=TRUE}
+create_react(age_16, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_16, reaction_time)
+```
+
+
+## Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(age_17_18, verbal_memory)
+```
+
+### Visual Memory
+
+```{r, include=TRUE}
+create_react(age_17_18, visual_memory)
+```
+
+### Visual Motor
+
+```{r, include=TRUE}
+create_react(age_17_18, visual_motor)
+```
+
+### Impulse Control
+
+```{r, include=TRUE}
+create_react(age_17_18, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_17_18, reaction_time)
+```

@@ -295,6 +295,37 @@ sport_tbl <- norms_age_range %>%
 sport_tbl
 ```
 
+## Sport Distribution by Age
+
+```{r, include=FALSE}
+norms_age_range %>% 
+  count(sport)
+
+sport_age_tbl <- norms_age_range %>% 
+  group_by(sport, age) %>% 
+  summarize(total = n()) %>% 
+  arrange(desc(total)) %>% 
+  na.omit() %>% 
+  reactable(
+    columns = list(
+      sport = colDef(name = "Sport"),
+      age = colDef(name = "Age"),
+      total = colDef(name = "Total",
+                     format = colFormat(separators = TRUE, suffix = " individuals"))),
+    pagination = TRUE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE,
+    searchable = TRUE
+  )
+```
+
+```{r, include=TRUE}
+sport_age_tbl
+```
+
 
 ```{r, include=FALSE}
 create_react <- function(df, var) {
@@ -534,4 +565,447 @@ create_react(age_17_18, impulse_control)
 
 ```{r, include=TRUE}
 create_react(age_17_18, reaction_time)
+```
+
+
+# Distribution of Scores by Age and Gender (Ages 12-18) {.tabset .tabset-fade .tabset-pills}
+
+```{r, include=FALSE}
+age_12_girl <- norms_age_range %>% 
+  filter(age == 12, 
+         gender == "Female")
+
+age_12_boy <- norms_age_range %>% 
+  filter(age == 12, 
+         gender == "Male")
+
+age_13_girl <- norms_age_range %>% 
+  filter(age == 13, 
+         gender == "Female")
+
+age_13_boy <- norms_age_range %>% 
+  filter(age == 13, 
+         gender == "Male")
+
+age_14_girl <- norms_age_range %>% 
+  filter(age == 14, 
+         gender == "Female")
+
+age_14_boy <- norms_age_range %>% 
+  filter(age == 14, 
+         gender == "Male")
+
+age_15_girl <- norms_age_range %>% 
+  filter(age == 15, 
+         gender == "Female")
+
+age_15_boy <- norms_age_range %>% 
+  filter(age == 15, 
+         gender == "Male")
+
+age_16_girl <- norms_age_range %>% 
+  filter(age == 16, 
+         gender == "Female")
+
+age_16_boy <- norms_age_range %>% 
+  filter(age == 16, 
+         gender == "Male")
+
+age_17_18_girl <- norms_age_range %>% 
+  filter(age == 17 | age == 18, 
+         gender == "Female")
+
+age_17_18_boy <- norms_age_range %>% 
+  filter(age == 17 | age == 18, 
+         gender == "Male")
+
+```
+
+## Age 12 Female {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_12_girl, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_12_girl, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_12_girl, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_12_girl, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_12_girl, reaction_time)
+```
+
+## Age 12 Male {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_12_boy, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_12_boy, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_12_boy, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_12_boy, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_12_boy, reaction_time)
+```
+
+
+## Age 13 Female {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_13_girl, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_13_girl, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_13_girl, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_13_girl, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_13_girl, reaction_time)
+```
+
+## Age 13 Male {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_13_boy, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_13_boy, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_13_boy, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_13_boy, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_13_boy, reaction_time)
+```
+
+
+## Age 14 Female {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_14_girl, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_14_girl, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_14_girl, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_14_girl, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_14_girl, reaction_time)
+```
+
+## Age 14 Male {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_14_boy, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_14_boy, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_14_boy, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_14_boy, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_14_boy, reaction_time)
+```
+
+
+## Age 15 Female {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_15_girl, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_15_girl, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_15_girl, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_15_girl, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_15_girl, reaction_time)
+```
+
+## Age 15 Male {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_15_boy, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_15_boy, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_15_boy, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_15_boy, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_15_boy, reaction_time)
+```
+
+
+## Age 16 Female {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_16_girl, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_16_girl, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_16_girl, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_16_girl, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_16_girl, reaction_time)
+```
+
+## Age 16 Male {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_16_boy, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_16_boy, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_16_boy, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_16_boy, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_16_boy, reaction_time)
+```
+
+
+## Ages 17-18 Female {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_17_18_girl, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_17_18_girl, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_17_18_girl, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_17_18_girl, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_17_18_girl, reaction_time)
+```
+
+## Ages 17-18 Male {.tabset .tabset-fade .tabset-pills}
+
+### Verbal Memory
+
+```{r, include=TRUE}
+create_react(age_17_18_boy, verbal_memory)
+```
+
+### Visual Memory 
+
+```{r, include=TRUE}
+create_react(age_17_18_boy, visual_memory)
+```
+
+### Visual Motor 
+
+```{r, include=TRUE}
+create_react(age_17_18_boy, visual_motor)
+```
+
+### Impulse Control 
+
+```{r, include=TRUE}
+create_react(age_17_18_boy, impulse_control)
+```
+
+### Reaction Time
+
+```{r, include=TRUE}
+create_react(age_17_18_boy, reaction_time)
 ```

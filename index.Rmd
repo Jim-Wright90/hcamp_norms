@@ -191,17 +191,28 @@ norms %>%
 # Test Background Information {.tabset .tabset-fade .tabset-pills}
 
 ```{r, include=FALSE}
+total_all_missing_included <- norms_all_baseline_tests %>% 
+  summarize(length(passport_id))
+
+
 total_all <- norms %>% 
   summarize(length(passport_id))
 
 total_age_range <- norms_age_range %>% 
   summarize(length(passport_id))
 
-total_sum <- data.frame("Level" = c("All Baseline Tests", "Baseline Tests Ages 12-18"), "Total" = c(83998, 79481))
+total_sum <- data.frame("Level" = c("Baseline Tests with Missing Scores",
+                                    "Baseline Tests with Missing Scores Removed",
+                                    "Baseline Tests Ages 12-18"),
+                        "Total" = c(85638,
+                                    83998,
+                                    79481))
 
 ```
 
 ## Total Tests
+
+Tests with missing scores not included in normed scores below.
 
 ```{r, include=TRUE}
 total_sum %>% 
@@ -1181,6 +1192,59 @@ football_age_17_18 <- norms_age_range %>%
 ```
 
 ```{r, include=FALSE}
+#all football
+
+all_football <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman")
+
+all_football_age_12 <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman",
+         age == 12)
+
+all_football_age_13 <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman",
+         age == 13)
+
+all_football_age_14 <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman",
+         age == 14)
+
+all_football_age_15 <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman",
+         age == 15)
+
+all_football_age_16 <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman",
+         age == 16)
+
+all_football_age_17_18 <- norms_age_range %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman",
+         age == 17 | age == 18)
+
+```
+
+```{r, include=FALSE}
 #volleyball
 
 volleyball <- norms_age_range %>% 
@@ -1373,7 +1437,7 @@ cheerleading_age_17_18 <- norms_age_range %>%
 ```
 
 ```{r, include=FALSE}
-#football
+#baseball
 
 baseball <- norms_age_range %>% 
   filter(sport == "Baseball")
@@ -1470,35 +1534,6 @@ martial_arts_age_17_18 <- norms_age_range %>%
 
 
 ```{r, include=FALSE}
-#football freshman 
-
-football_freshman <- norms_age_range %>% 
-  filter(sport == "Football Freshman")
-
-football_freshman_age_12 <- norms_age_range %>% 
-  filter(sport == "Football Freshman",
-         age == 12)
-
-football_freshman_age_13 <- norms_age_range %>% 
-  filter(sport == "Football Freshman",
-         age == 13)
-
-football_freshman_age_14 <- norms_age_range %>% 
-  filter(sport == "Football Freshman",
-         age == 14)
-
-football_freshman_age_15 <- norms_age_range %>% 
-  filter(sport == "Football Freshman",
-         age == 15)
-
-football_feshman_ages_12_15 <- norms_age_range %>% 
-  filter(sport == "Football Freshman", 
-         age >= 12 & age <= 15)
-
-```
-
-
-```{r, include=FALSE}
 #water polo 
 
 water_polo <- norms_age_range %>% 
@@ -1529,3 +1564,2772 @@ water_polo_age_17_18 <- norms_age_range %>%
          age == 17 | age == 18)
 
 ```
+
+
+## Football {.tabset .tabset-fade .tabset-pills}
+
+Football scores represent all tests coded as "Football", "Varsity Football", "Junior Varsity Football", and "Freshman Football".
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(all_football_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(all_football_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(all_football_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(all_football_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(all_football_age_17_18, total_symptom_score)
+```
+
+
+
+## Soccer {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(soccer_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(soccer_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(soccer_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(soccer_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(soccer_age_17_18, total_symptom_score)
+```
+
+
+## Volleyball {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(volleyball_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(volleyball_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(volleyball_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(volleyball_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(volleyball_age_17_18, total_symptom_score)
+```
+
+
+## Basketball {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(basketball_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(basketball_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(basketball_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(basketball_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(basketball_age_17_18, total_symptom_score)
+```
+
+
+## Wrestling {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(wrestling_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(wrestling_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(wrestling_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(wrestling_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(wrestling_age_17_18, total_symptom_score)
+```
+
+
+## Cheerleading {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(cheerleading_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(cheerleading_age_17_18, total_symptom_score)
+```
+
+
+## Baseball {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(baseball_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(baseball_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(baseball_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(baseball_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(baseball_age_17_18, total_symptom_score)
+```
+
+
+## Softball {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(softball_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(softball_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(softball_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(softball_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(softball_age_17_18, total_symptom_score)
+```
+
+
+## Martial Arts {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(martial_arts_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(martial_arts_age_17_18, total_symptom_score)
+```
+
+
+## Water Polo {.tabset .tabset-fade .tabset-pills}
+
+### Ages 12-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo, total_symptom_score)
+```
+
+
+### Age 12 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_12, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_12, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo_age_12, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo_age_12, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo_age_12, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo_age_12, total_symptom_score)
+```
+
+
+### Age 13 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_13, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_13, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo_age_13, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo_age_13, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo_age_13, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo_age_13, total_symptom_score)
+```
+
+
+### Age 14 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_14, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_14, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo_age_14, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo_age_14, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo_age_14, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo_age_14, total_symptom_score)
+```
+
+### Age 15 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_15, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_15, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo_age_15, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo_age_15, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo_age_15, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo_age_15, total_symptom_score)
+```
+
+### Age 16 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_16, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_16, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo_age_16, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo_age_16, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo_age_16, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo_age_16, total_symptom_score)
+```
+
+### Ages 17-18 {.tabset .tabset-fade .tabset-pills}
+
+#### Verbal Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_17_18, verbal_memory)
+```
+
+#### Visual Memory 
+
+```{r, include=TRUE}
+create_react(water_polo_age_17_18, visual_memory)
+```
+
+#### Visual Motor 
+
+```{r, include=TRUE}
+create_react(water_polo_age_17_18, visual_motor)
+```
+
+#### Impulse Control 
+
+```{r, include=TRUE}
+create_react(water_polo_age_17_18, impulse_control)
+```
+
+#### Reaction Time
+
+```{r, include=TRUE}
+create_react(water_polo_age_17_18, reaction_time)
+```
+
+#### Total Symptom 
+
+```{r, include=TRUE}
+create_react(water_polo_age_17_18, total_symptom_score)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

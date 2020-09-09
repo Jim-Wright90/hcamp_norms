@@ -4289,6 +4289,358 @@ create_react(water_polo_age_17_18, total_symptom_score)
 ```
 
 
+# Model Relationship Between Age and Impact Scores {.tabset .tabset-fade .tabset-pills}
+
+Overall, there are significant differences between average scores and the different ages with older ages achieving better scores, but the models do not account for much variance to define a strong relationship between age and score performance. 
+
+```{r, include=TRUE}
+model_data <- norms_age_range %>% 
+  mutate(age = as.factor(age),
+         gender = as.factor(gender),
+         sport = as.factor(sport)) %>% 
+  filter(sport == "Football" |
+           sport == "Football Varsity" |
+           sport == "Football Junior Varsity" |
+           sport == "Football Freshman" |
+           sport == "Soccer" |
+           sport == "Volleyball" |
+           sport == "Basketball" |
+           sport == "Wrestling" |
+           sport == "Cheerleading" |
+           sport == "Baseball" |
+           sport == "Softball" |
+           sport == "Martial Arts" |
+           sport == "Water Polo")
+```
+
+## Verbal Memory 
+
+```{r, include=TRUE}
+verbal_memory_age_mod <- lm(verbal_memory ~ age, data = model_data)
+
+summary(verbal_memory_age_mod)
+```
+
+
+## Visual Memory 
+
+```{r, include=TRUE}
+visual_memory_age_mod <- lm(visual_memory ~ age, data = model_data)
+
+summary(visual_memory_age_mod)
+```
+
+
+## Visual Motor 
+
+```{r, include=TRUE}
+visual_motor_age_mod <- lm(visual_motor ~ age, data = model_data)
+
+summary(visual_motor_age_mod)
+```
+
+## Impulse Control
+
+```{r, include=TRUE}
+impulse_control_age_mod <- lm(impulse_control ~ age, data = model_data)
+
+summary(impulse_control_age_mod)
+```
+
+## Reaction Time 
+
+```{r, include=TRUE}
+reaction_time_age_mod <- lm(reaction_time ~ age, data = model_data)
+
+summary(reaction_time_age_mod)
+```
+
+
+# Model Relationship Between Gender and Impact Scores {.tabset .tabset-fade .tabset-pills}
+
+Overall, females score better than males in all test domains except for visual memory. There are significant differences, but the models do not account for much variance. 
+
+## Verbal Memory 
+
+```{r, include=TRUE}
+verbal_memory_gender_mod <- lm(verbal_memory ~ gender, data = model_data)
+
+summary(verbal_memory_gender_mod)
+```
+
+
+## Visual Memory 
+
+```{r, include=TRUE}
+visual_memory_gender_mod <- lm(visual_memory ~ gender, data = model_data)
+
+summary(visual_memory_gender_mod)
+```
+
+
+## Visual Motor 
+
+```{r, include=TRUE}
+visual_motor_gender_mod <- lm(visual_motor ~ gender, data = model_data)
+
+summary(visual_motor_gender_mod)
+```
+
+## Impulse Control
+
+```{r, include=TRUE}
+impulse_control_gender_mod <- lm(impulse_control ~ gender, data = model_data)
+
+summary(impulse_control_gender_mod)
+```
+
+## Reaction Time 
+
+```{r, include=TRUE}
+reaction_time_gender_mod <- lm(reaction_time ~ gender, data = model_data)
+
+summary(reaction_time_gender_mod)
+```
+
+
+
+# Model Relationship Between Age and Gender and Impact Scores {.tabset .tabset-fade .tabset-pills}
+
+Models do not account for much variance, but significant differences in score performance identified. 
+
+## Verbal Memory 
+
+```{r, include=TRUE}
+verbal_memory_age_gender_mod <- lm(verbal_memory ~ age + gender, data = model_data)
+
+summary(verbal_memory_age_gender_mod)
+```
+
+
+## Visual Memory 
+
+```{r, include=TRUE}
+visual_memory_age_gender_mod <- lm(visual_memory ~ age + gender, data = model_data)
+
+summary(visual_memory_age_gender_mod)
+```
+
+
+## Visual Motor 
+
+```{r, include=TRUE}
+visual_motor_age_gender_mod <- lm(visual_motor ~ age + gender, data = model_data)
+
+summary(visual_motor_age_gender_mod)
+```
+
+## Impulse Control
+
+```{r, include=TRUE}
+impulse_control_age_gender_mod <- lm(impulse_control ~ age + gender, data = model_data)
+
+summary(impulse_control_age_gender_mod)
+```
+
+## Reaction Time 
+
+```{r, include=TRUE}
+reaction_time_age_gender_mod <- lm(reaction_time ~ age + gender, data = model_data)
+
+summary(reaction_time_age_gender_mod)
+```
+
+
+# Model Relationship Between Sport and Impact Scores {.tabset .tabset-fade .tabset-pills}
+
+## Verbal Memory 
+
+```{r, include=TRUE}
+verbal_memory_sport_mod <- lm(verbal_memory ~ sport, data = model_data)
+
+summary(verbal_memory_sport_mod)
+```
+
+
+## Visual Memory 
+
+```{r, include=TRUE}
+visual_memory_sport_mod <- lm(visual_memory ~ sport, data = model_data)
+
+summary(visual_memory_sport_mod)
+```
+
+
+## Visual Motor 
+
+```{r, include=TRUE}
+visual_motor_sport_mod <- lm(visual_motor ~ sport, data = model_data)
+
+summary(visual_motor_sport_mod)
+```
+
+## Impulse Control
+
+```{r, include=TRUE}
+impulse_control_sport_mod <- lm(impulse_control ~ sport, data = model_data)
+
+summary(impulse_control_sport_mod)
+```
+
+## Reaction Time 
+
+```{r, include=TRUE}
+reaction_time_sport_mod <- lm(reaction_time ~ sport, data = model_data)
+
+summary(reaction_time_sport_mod)
+```
+
+
+# Model Relationship Between Age and Sport and Impact Scores {.tabset .tabset-fade .tabset-pills}
+
+## Verbal Memory 
+
+```{r, include=TRUE}
+verbal_memory_age_sport_mod <- lm(verbal_memory ~ age +sport, data = model_data)
+
+summary(verbal_memory_age_sport_mod)
+```
+
+
+## Visual Memory 
+
+```{r, include=TRUE}
+visual_memory_age_sport_mod <- lm(visual_memory ~ age + sport, data = model_data)
+
+summary(visual_memory_age_sport_mod)
+```
+
+
+## Visual Motor 
+
+```{r, include=TRUE}
+visual_motor_age_sport_mod <- lm(visual_motor ~ age + sport, data = model_data)
+
+summary(visual_motor_age_sport_mod)
+```
+
+## Impulse Control
+
+```{r, include=TRUE}
+impulse_control_age_sport_mod <- lm(impulse_control ~ age + sport, data = model_data)
+
+summary(impulse_control_age_sport_mod)
+```
+
+## Reaction Time 
+
+```{r, include=TRUE}
+reaction_time_age_sport_mod <- lm(reaction_time ~ age + sport, data = model_data)
+
+summary(reaction_time_age_sport_mod)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
